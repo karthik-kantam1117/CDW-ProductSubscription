@@ -1,0 +1,17 @@
+<isif condition="${lineItem.isBonusProductLineItem}">
+    <div class="bonus-product-line-item">${Resource.msg('msg.bonus.product', 'cart', null)}</div>
+</isif>
+<div class="line-item-header">
+    <div class="line-item-name">
+        <a href="${URLUtils.url('Product-Show', 'pid', lineItem.id)}">
+            <isprint value="${lineItem.productName}" encoding="off" />
+        </a>
+        <p class="line-item-info">
+            <span class="greytext d-block d-lg-inline-block">${Resource.msg('label.order.brand', 'confirmation', null)}
+                <isprint value="${lineItem.productBrandName}" encoding="off" /></span>
+            <span class="greytext d-block d-lg-inline-block"> ${Resource.msg('label.order.model', 'confirmation', null)}
+                <isprint value="${lineItem.id}" encoding="off" /></span>
+        </p>
+    </div>
+
+</div>

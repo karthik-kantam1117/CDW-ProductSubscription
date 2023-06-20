@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-between">
+    <div>
+        <p>${Resource.msg('label.payment.credit', 'account', null)} ${payment.creditCardType}</p>
+        <p>${payment.maskedCreditCardNumber}</p>
+        <p>${Resource.msg('label.payment.ending', 'account', null)}
+            ${payment.creditCardExpirationMonth}/${payment.creditCardExpirationYear}</p>
+    </div>
+    <isif condition="${payment.UUID === pdict.defaultPaymentUUID}">
+        <div class="w-50 p-3 text-success font-weight-bold">
+            <p class="subscribe-and-save-card">${Resource.msg('text.defaultCreditCardMessage','payment',null)}</p>
+        </div>
+    </isif>
+</div>
+<isif condition="${!pdict.accountlanding}">
+    <div class="d-flex edit-payment-btn-container">
+        <a href="${URLUtils.url('PaymentInstruments-EditPayment', 'uuid', payment.UUID)}" class="btn btn-save btn-block btn-primary edit-payment-btn mr-5 col-10 col-sm-6 col-md-5 col-lg-4" aria-label="${Resource.msg('label.payment.editpayment','payment',null)}">${Resource.msg('button.edit','payment',null)}</a>
+    </div>
+</isif>

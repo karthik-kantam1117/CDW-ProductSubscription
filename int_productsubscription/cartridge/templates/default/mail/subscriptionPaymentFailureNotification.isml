@@ -1,0 +1,27 @@
+<body>
+    <h1>${Resource.msg('email.msg.greeting.hi', 'subscription', null)}&nbsp;${pdict.customer.firstName}<isif condition="${pdict.customer.lastName}">&nbsp;${pdict.customer.lastName},</isif></h1>
+   
+    <p>
+        ${Resource.msgf('email.msg.subscription.payment.failure.details','subscription', null,pdict.url)} 
+    </p>
+    <br/>
+
+    <p>
+        <strong>${Resource.msg('email.label.subscription.payment.info', 'subscription', null)}</strong>
+        <br/>
+    </p>
+
+    <p>
+        ${Resource.msg('label.order.number', 'confirmation', null)} : ${pdict.order.orderNo}
+    </p>
+    <isif condition="${pdict.paymentMethod}">
+        <p>
+            ${Resource.msg('email.label.subscription.payment.method', 'subscription', null)} : ${pdict.paymentMethod}
+        </p>
+    </isif>
+    <p>
+        ${Resource.msg('email.label.order.total', 'subscription', null)} : ${pdict.order.totalGrossPrice.value}
+    </p>
+
+
+</body>

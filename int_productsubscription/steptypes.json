@@ -1,0 +1,87 @@
+{
+  "step-types": {
+    "script-module-step": [
+      {
+        "@type-id": "custom.RecurringOrder",
+        "@supports-parallel-execution": "true",
+        "@supports-site-context": "true",
+        "@supports-organization-context": "false",
+        "description": "Placing order on behalf of customer",
+        "module": "int_productsubscription/cartridge/scripts/jobsteps/RecurringOrder.js",
+        "function": "process",
+        "transactional": "true",
+        "timeout-in-seconds": "900",
+        "parameters": {},
+        "status-codes": {
+          "status": [
+            {
+              "@code": "ERROR",
+              "description": "An error occurs, please re-run the job"
+            },
+            {
+              "@code": "FINISHED",
+              "description": "Recurring order placed successfully"
+            }
+          ]
+        }
+      },
+      {
+        "@type-id": "custom.CreditCardExpiryNotification",
+        "@supports-parallel-execution": "true",
+        "@supports-site-context": "true",
+        "@supports-organization-context": "false",
+        "description": "Sending credit card expiry emails",
+        "module": "int_productsubscription/cartridge/scripts/jobsteps/CreditCardExpiryNotification.js",
+        "function": "process",
+        "transactional": "true",
+        "timeout-in-seconds": "900",
+        "parameters": {},
+        "status-codes": {
+          "status": [
+            {
+              "@code": "ERROR",
+              "description": "An error occurs, please re-run the job"
+            },
+            {
+              "@code": "OK",
+              "description": "Used when everything went well."
+            }
+          ]
+        }
+      },
+      {
+        "@type-id": "custom.ExportOrders",
+        "@supports-parallel-execution": "true",
+        "@supports-site-context": "true",
+        "@supports-organization-context": "false",
+        "description": "Exporting the orders",
+        "module": "int_productsubscription/cartridge/scripts/jobsteps/ExportOrders.js",
+        "function": "process",
+        "transactional": "false",
+        "timeout-in-seconds": "900",
+        "parameters": {
+          "parameter": [{
+            "@name":"OrdersLimit",
+            "@type":"long",
+            "@required":"false",
+            "@trim":"false",
+            "description":"Number of orders to process. (maximum :1000)"
+          }]
+        },
+        "status-codes": {
+          "status": [
+            {
+              "@code": "ERROR",
+              "description": "An error occurs, please re-run the job"
+            },
+            {
+              "@code": "FINISHED",
+              "description": "Recurring order placed successfully"
+            }
+          ]
+        }
+      }
+      
+    ]
+  }
+}

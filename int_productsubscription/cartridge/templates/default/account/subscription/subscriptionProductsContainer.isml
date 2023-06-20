@@ -1,0 +1,28 @@
+ <isif condition="${pdict.items.length === 0}">
+    <div class="container subscription-container cart-empty">
+        <div class="row justify-content-center">
+            <div class="col-8 text-center">
+                <h2 class="mb-3 subscription-no-subscription">${Resource.msgf('info.subscription.empty.msg', 'subscription', null, pdict.subscriptionType==="cancel"?"canceled": pdict.subscriptionType==="upcomingdeliveries"?"upcoming":pdict.subscriptionType)}</h2>
+                <p>${Resource.msgf('info.subscription.empty.msg.text', 'subscription', null, pdict.subscriptionType==="cancel"?"canceled": pdict.subscriptionType==="upcomingdeliveries"?"upcoming":pdict.subscriptionType)}</p>
+                <a class="btn btn-primary btn-block continue-shopping-link" href="${URLUtils.url('Home-Show')}"
+                    title="${Resource.msg('link.continue.shopping', 'cart', null)}">
+                    ${Resource.msg('link.continue.shopping', 'cart', null)}
+                </a>
+            </div>
+        </div>
+    </div>
+<iselse/>
+    <div class="container subscription-container cart-page">
+    <isset name="subscriptionDetails" value="${pdict.subscriptionDetails}" scope="page"/>
+        <isloop items="${pdict.items}" var="lineItem" status="status">
+                <div class="row">
+                    <!---product cards--->
+                    <div class="col-12">
+                            <isinclude template="account/subscription/subscriptionProductCard" />
+                    </div>
+                </div>
+            <isinclude template="account/subscription/cancelSubscriptionModal" />
+            <isinclude template="account/subscription/updateSubscriptionModal" />
+        </isloop>
+    </div>
+</isif>

@@ -1,0 +1,20 @@
+<label for="subscriptionInterval">${Resource.msg('label.subscription.interval', 'subscription', null)}</label>
+<div class="row">
+    <div class="col-12">
+        <div class="product-subscription-interval">
+            <select class="custom-select col-12" name="subscriptionInterval" id="subscriptionInterval"  <isprint value= "${pdict.subscriptionType == 'upcomingdeliveries' || !subscriptionEnabled ?"disabled":""}"/>>
+                <isloop items="${lineItem.subscriptionAllowedInterval}" var="interval"
+                    status="loopStatus">
+                    <option value="${interval}" <isprint value="${interval == subscriptionDetails[status.index].orderInterval?"selected":""}"/>>${interval}
+                        <isif condition="${interval == " 1"}">
+                            ${Resource.msg('product.subscribe.duration.singular', 'product', null)}
+                        <iselse/>
+                            ${Resource.msg('product.subscribe.duration.plural', 'product', null)}
+                        </isif>
+                    </option>
+                </isloop>
+            </select>
+        </div>
+    </div>
+    <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+</div>

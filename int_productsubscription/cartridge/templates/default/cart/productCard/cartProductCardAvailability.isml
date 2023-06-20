@@ -1,0 +1,22 @@
+<div class="line-item-availability availability-${lineItem.UUID}">
+    <isloop items="${lineItem.availability.messages}" var="message">
+        <p class="line-item-attributes"><isprint value="${message}" encoding="off" /></p>
+    </isloop>
+
+    <isif condition="${typeof shoppingCart !== 'undefined' && shoppingCart && dw.system.Site.getCurrent().getCustomPreferenceValue('enableVarsity')}">
+        <isif condition="${lineItem.availability.inStock == true && !pdict.shipsTruck}">
+            <div class="estimated-arrival">
+                <isscript>
+                    var zipcode = request.httpCookies.zipCode ? request.httpCookies.zipCode.value : request.geolocation.postalCode;
+                </isscript>
+                <isif condition="${(typeof zipcode!=='undefined') && zipcode!=null}">
+                    <isinclude url="${URLUtils.url('Product-GetArrivalDate', 'zipcode', zipcode.toString())}"/>  
+                <iselse>
+                    <isinclude url="${URLUtils.url('Product-GetArrivalDate', 'zipcode', '')}"/>   
+                </isif>
+            </div>
+            <isinclude template="product/components/zipCodeModal"/>
+        </isif>
+    </isif> 
+    <!-- ${pdict.upcomingSubscription.nextOrderDate} -->  
+</div>

@@ -1,0 +1,65 @@
+<isset name="product" value="${typeof product === 'undefined' || empty(product) ? pdict.product : product}" scope="page" />
+
+<isif condition="${product.subscriptionEnabled && !empty(product.price.sales) && !empty(product.subscriptionMessage)}">
+    <div class="product-subscription">
+        <div class="col">
+            <div class="row">
+                <div class="subscribe-product">
+                    <input type="checkbox" id="subscribeProduct" name="subscribeProduct" />
+                    <label for="subscribeProduct">${Resource.msg('product.subscribe.text','product',null)}</label>
+                </div>
+                <isif condition="${!empty(product.subscriptionMessage) && product.subscriptionMessage !=0 }">
+                    <div class="product-subscription-msg px-2">
+                        <label>${product.subscriptionMessage}</label>
+                    </div>
+                </isif>
+            </div>
+            <div class="row">
+                <isset name="price" value="${product.price.sales}" scope="page" />
+                    <span class="sales strike-through">
+                        <isif condition="${typeof lineItem !== 'undefined'}">
+
+                                <isset name="totalPrice" value="${lineItem.priceTotal.price.replace('$', '')}" scope="page" />
+                                <isif condition="${lineItem.priceTotal.nonAdjustedPrice}">
+                                    <isset name="totalPrice" value="${lineItem.priceTotal.nonAdjustedPrice.replace('$', '')}" scope="page" />
+                                </isif>
+                                <isset name="totalPrice" value="${totalPrice.replace(/,/g, '')}" scope="page" />
+                                <isset name="unitPrice" value="${totalPrice/lineItem.quantity}" scope="page" />
+                                $<isprint value="${unitPrice}"  encoding="off" />
+
+                        <iselse/>
+                            <isif condition="${!empty(price) && price.formatted}">
+                                <isif condition="${hasWasPrice}">
+                                    <span class="list">${Resource.msg('label.price.sale', 'pricing', null)}</span>
+                                </isif>
+                                <span class="value" content="${price.decimalPrice}"></span>
+                                <isinclude template="/product/components/pricing/formatted" />
+                            </isif>
+                        </isif>
+                    </span>
+                    <div class="product-subscription-price px-1">
+                        <label>$${product.subscriptionPrice.value}</label>
+                    </div>
+            </div>
+
+            <div class="product-subscription-interval px-3">
+                <label for="subscriptionInterval">${Resource.msg('product.subscribe.interval.text','product',null)}</label>
+                <select class="custom-select col-6" name="subscriptionInterval" id="subscriptionInterval">
+                    <isloop items="${product.subscriptionAllowedInterval}" var="interval" status="loopStatus">
+                        <option value="${interval}">${interval}
+                            <isif condition="${interval == "1"}">
+                                ${Resource.msg('product.subscribe.duration.singular','product',null)}
+                            <iselse/>
+                                ${Resource.msg('product.subscribe.duration.plural','product',null)}
+                            </isif>
+                        </option>
+                    </isloop>
+                </select>
+            </div>
+            <div class="preferredOrderDatePDP px-3 py-3">
+                <label for="preferredOrderDatePDP">${Resource.msg('product.subscribe.preferredOrderDate','product',null)}</label>
+                <input type="date" name="preferredOrderDatePDP" id="preferredOrderDatePDP" value="${pdict.PDPDateLimits.value}" min="${pdict.PDPDateLimits.min}" max="${pdict.PDPDateLimits.max}" class="col-6"/>
+            </div>
+        </div>
+    </div>
+</isif>

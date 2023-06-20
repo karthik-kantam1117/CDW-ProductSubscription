@@ -1,0 +1,4 @@
+<isif condition="${lineItem.subscriptionItem}">
+        <div class="product-subscription-discount">${lineItem.subscriptionMessage}</div>
+        <div class="product-subscribed">${Resource.msg('cart.page.subscription', 'cart', null)}</div>
+</isif>

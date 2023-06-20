@@ -1,0 +1,33 @@
+<div class="subscription-dashboard-wrapper p-2">
+    <div class="p-2">
+        <button class="btn btn-outline-primary pull-right" id="download-report-btn" data-action-toast="${pdict.updateToastUrl}"  data-action="${pdict.downloadReportUrl}">
+            <span class="fa fa-download"></span> ${Resource.msg('text.report.filter.download.button', 'report', null)}
+        </button>
+        <h2 class="text-center">
+            ${Resource.msg('text.report.filter.title', 'report', null)}
+        </h2>
+    </div>
+        
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <p>${Resource.msg('label.report.filter.productId', 'report', null)} </p>
+            </div>
+
+            <div class="col-9">
+                <input id="productID" type="text" name="productID" class="productID" placeholder="ProductID" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p>${Resource.msg('label.report.filter.date.range', 'report', null)} </p>
+            </div>
+
+            <div class="col-9">
+                <input id="startDate" type="date" name="fromDate"/>
+
+                <input id="endDate" type="date" name="toDate"/>
+            </div>
+        </div>
+    </div>
+</div>

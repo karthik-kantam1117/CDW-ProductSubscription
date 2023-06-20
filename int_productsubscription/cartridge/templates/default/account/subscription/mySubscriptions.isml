@@ -1,0 +1,29 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+         assets.addCss('/css/account/subscriptions/subscription.css');
+         assets.addJs('/js/mySubscriptions.js');    
+    </isscript>
+
+    <div class="container">
+        <!---Breadcrumbs--->
+        <isinclude template="components/breadcrumbs/pageBreadcrumbs" />
+        <div class="row justify-content-left">
+            <div class="col-xs-12 col-sm-10 col-md-8 subscription-header">
+                <h1>${Resource.msg('label.subscriptionhistory', 'account', null)}</h1>
+            </div>
+        </div>
+
+        <div class="subscription-tab-wrapper row justify-content-left nav-tabs">
+                <div class="nav-item active-subscription-tab subscription-tab-on subscription-tab col-lg-2 col-md-3 col-sm-3 col-4" data-action="${pdict.actionUrls.getSubscriptionsUrl}"><a class="nav-link" href="#">${Resource.msg('label.activetab', 'account', null)}</a></div>
+                <div class="nav-item cancel-subscription-tab subscription-tab col-lg-2 col-md-3 col-sm-3 col-4" data-action="${pdict.actionUrls.getSubscriptionsUrl}"><a class="nav-link" href="#">${Resource.msg('label.cancelledtab', 'account', null)}</a></div>
+                <div class="nav-item upcomingdeliveries-subscription-tab subscription-tab col-lg-2 col-md-3 col-sm-3 col-4" data-action="${pdict.actionUrls.getSubscriptionsUrl}"><a class="nav-link" href="#">${Resource.msg('label.upcomingdeliveriestab', 'account', null)}</a></div>
+        </div>
+    </div>
+
+    <div class="subscribed-products-section">
+        <isinclude template="account/subscription/subscriptionProductsContainer"/>
+    </div>
+
+
+</isdecorate>

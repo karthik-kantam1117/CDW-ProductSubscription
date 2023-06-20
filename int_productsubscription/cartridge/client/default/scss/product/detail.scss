@@ -1,0 +1,71 @@
+@import "~base/variables";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+@import "~base/utilities/shapes";
+@import "~base/utilities/responsiveUtils";
+@import "~base/utilities/swatch";
+@import "~base/product/detail";
+
+.product-subscription{
+    margin-left: 0;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    border:0.063rem solid #0707071a;
+    padding: 0.625rem 0;
+    border-radius: 0.625rem;
+    .row{
+        margin-left: 0;
+    }
+    
+    .preferredOrderDatePDP{
+        input[type="date"]{
+            padding: .49rem .75rem;
+            width: 100%;
+            border: 1px solid #ced4da;
+            border-radius: 0.1875rem;
+            margin-left: 0.5rem;
+        }
+        label{
+            font-size: 0.9rem;
+        }
+    } 
+    .subscribe-product{
+        font-weight: 700;
+        font-size: 1rem;
+    }
+    .product-subscription-price{
+        font-size: 1rem;
+        color: #e7131a;
+        font-weight: 600;
+    }
+    .product-subscription-msg{
+        font-size: 0.875rem;
+        label{
+            font-weight: 700;
+            background-color: #e7131a;
+            padding: 0 0.625rem;
+            border-radius: 1.25rem 0;
+            color: $white;
+        }
+    }
+    .product-subscription-interval{
+        select{
+            margin-left: 0.5rem;
+        }
+        label{
+            font-size: 0.9rem;
+        }
+    }
+    .sales{
+        color: $black;
+        font-weight: 500;
+        padding-left: 1rem;
+        
+    }
+}
+// sales price strike inside subscription-wrapper 
+.strike-through {
+    text-decoration: line-through;
+    color: $grey4;
+    margin-right: 0.938rem;
+}

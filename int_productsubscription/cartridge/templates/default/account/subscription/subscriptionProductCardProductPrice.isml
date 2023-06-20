@@ -1,0 +1,23 @@
+<div class="${pdict.subscriptionType == 'upcomingdeliveries' ? "col-lg-3" : "col-lg-4"} product-card-footer mt-2">
+    <isif condition="${!lineItem.isBonusProductLineItem}">
+        <div class="row">
+            <!---item price--->
+            <div class="col-6 line-item-price-${lineItem.uuid}">
+                <p class="line-item-price-info subscription-line-item-price-info">${Resource.msg('label.each.item.price', 'subscription', null)}</p>
+                <isset name="price" value="${lineItem.subscriptionPrice.value}" scope="page" />
+                <div class="unit-price">
+                    ${price}
+                </div>
+            </div>
+            
+            <!--- quantity --->
+            <div class="col-6 col-lg-5 line-item-quantity subscription-line-item-quantity">
+                <label for="quantity" class="subscription-quantity">${Resource.msg('label.each.item.quantity', 'subscription', null)}</label>
+                <input type="number" name="quantity" value="${subscriptionDetails[status.index].quantity}" min="1" <isprint value= "${pdict.subscriptionType == 'upcomingdeliveries' || !subscriptionEnabled?"disabled":""}"/>/>
+            </div>
+            
+            <!--- extra slot for spacing reasons due to large remove button --->
+            <div class=" col-lg-1 hidden-md-down remove-line-item-lg"></div>
+        </div>
+    </isif>
+</div>

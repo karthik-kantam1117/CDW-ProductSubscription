@@ -1,0 +1,29 @@
+<body>
+    <h1>${Resource.msg('email.msg.greeting.hello', 'subscription', null)}&nbsp;${pdict.customer.firstName}<isif condition="${pdict.customer.lastName}">&nbsp;${pdict.customer.lastName},</isif></h1>
+   
+    <p>
+        ${Resource.msg('email.subscription.delayed.content1','subscription', null)} 
+    </p>
+
+    <p>
+        ${Resource.msg('email.subscription.delayed.content2', 'subscription', null)}
+    </p>
+
+    <p>
+        ${Resource.msg('email.subscription.delayed.content3', 'subscription', null)}
+    </p>
+
+    <p>
+        ${Resource.msg('email.subscription.delayed.discontinued.contactusMessage', 'subscription', null)}
+    </p>
+
+    <p>
+        ${Resource.msg('email.subscription.delayed.discontinued.thankYouMessage', 'subscription', null)}
+    </p>
+
+    <p>
+        ${Resource.msg('email.subscription.delayed.discontinued.bestRegards', 'subscription', null)}<br/>
+        ${pdict.companyName}
+    </p>
+
+</body>

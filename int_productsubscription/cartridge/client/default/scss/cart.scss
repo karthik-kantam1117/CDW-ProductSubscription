@@ -1,0 +1,30 @@
+@import "~base/skin/skinVariables";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+@import "~base/cart";
+
+
+.product-subscribed {
+    font-size: 0.813rem;
+}
+.product-subscription-discount{
+    font-size: 0.8rem;
+    label{
+        font-weight: 700;
+        background-color: #e7131a;
+        padding: 0 0.625rem;
+        border-radius: 1.25rem 0;
+        color: $white;
+        margin: 0;
+        
+    }
+}
+.subscriptionInterval{
+    white-space: nowrap;
+    margin: .5em 0 0;
+    font-size: .813rem;
+}
+
+.subscribed-wrapper {
+    justify-content: flex-end;
+}

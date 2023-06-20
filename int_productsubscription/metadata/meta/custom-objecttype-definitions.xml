@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+
+    <custom-type type-id="ProductSubscriptions">
+        <display-name xml:lang="x-default">ProductSubscriptions</display-name>
+        <staging-mode>no-staging</staging-mode>
+        <storage-scope>site</storage-scope>
+        <key-definition attribute-id="ID">
+            <type>string</type>
+            <min-length>0</min-length>
+        </key-definition>
+        <attribute-definitions>
+            <attribute-definition attribute-id="customerNo">
+                <display-name xml:lang="x-default">Customer Number</display-name>
+                <description xml:lang="x-default">Customer Number</description>
+                <type>string</type>
+                <localizable-flag>false</localizable-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="isActive">
+                <display-name xml:lang="x-default">Is Active</display-name>
+                <description xml:lang="x-default">Is Active</description>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="nextNextOrderDate">
+                <display-name xml:lang="x-default">Next Next Order Date</display-name>
+                <type>date</type>
+                <localizable-flag>false</localizable-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="nextOrderDate">
+                <display-name xml:lang="x-default">Next Order Date</display-name>
+                <description xml:lang="x-default">Next Order Date</description>
+                <type>date</type>
+                <localizable-flag>false</localizable-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="orderInterval">
+                <display-name xml:lang="x-default">Order Interval</display-name>
+                <description xml:lang="x-default">Order Interval</description>
+                <type>int</type>
+                <localizable-flag>false</localizable-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="originalOrderNo">
+                <display-name xml:lang="x-default">Original Order Number</display-name>
+                <description xml:lang="x-default">Original Order Number</description>
+                <type>string</type>
+                <localizable-flag>false</localizable-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="productId">
+                <display-name xml:lang="x-default">Product Id</display-name>
+                <description xml:lang="x-default">Product Id</description>
+                <type>string</type>
+                <localizable-flag>false</localizable-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="quantity">
+                <display-name xml:lang="x-default">Quantity</display-name>
+                <description xml:lang="x-default">Quantity</description>
+                <type>int</type>
+                <localizable-flag>false</localizable-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="selectedOrderDate">
+                <display-name xml:lang="x-default">selectedOrderDate</display-name>
+                <description xml:lang="x-default">User selected date which we use to set the date for the next order dates</description>
+                <type>date</type>
+                <localizable-flag>false</localizable-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+        </attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="subscriptionDetails">
+                <display-name xml:lang="x-default">Subscription Details</display-name>
+                <attribute attribute-id="isActive"/>
+                <attribute attribute-id="nextOrderDate"/>
+                <attribute attribute-id="orderInterval"/>
+                <attribute attribute-id="customerNo"/>
+                <attribute attribute-id="ID"/>
+                <attribute attribute-id="originalOrderNo"/>
+                <attribute attribute-id="quantity"/>
+                <attribute attribute-id="productId"/>
+                <attribute attribute-id="nextNextOrderDate"/>
+                <attribute attribute-id="selectedOrderDate"/>
+            </attribute-group>
+        </group-definitions>
+    </custom-type>
+
+
+</metadata>

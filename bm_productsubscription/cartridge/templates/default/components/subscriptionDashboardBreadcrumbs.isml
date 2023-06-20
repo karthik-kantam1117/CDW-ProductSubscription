@@ -1,0 +1,9 @@
+<div id="bm-breadcrumb">
+    <isloop items="${pdict.breadcrumbs}" var="breadcrumb" status="loopstatus">
+        <isif condition="${loopstatus.last}">
+            ${breadcrumb.text}
+        <iselse/>
+            <a class="breadcrumb-element" href="${breadcrumb.url}" title="${breadcrumb.text}">${breadcrumb.text}</a>
+        </isif>
+    </isloop>
+</div>

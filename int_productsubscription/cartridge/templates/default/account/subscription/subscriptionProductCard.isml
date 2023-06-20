@@ -1,0 +1,144 @@
+<isset name="hasEmbeddedBonusProducts" value="${lineItem.bonusProductLineItemUUID === 'bonus'}" scope="page" />
+<isset name="bonusproductlineitem" value="${hasEmbeddedBonusProducts ? 'bonus-product-line-item' : ''}" scope="page" />
+<isset name="bonuslineitemrow" value="${hasEmbeddedBonusProducts ? 'bonus-line-item-row' : ''}" scope="page" />
+<isset name="subscriptionEnabled" value="${pdict.subscriptionDetails[status.index].subscriptionEnabled}" scope="page" />
+
+<div class="card product-info subscription-product-info ${bonusproductlineitem} sid-${lineItem.sid}">
+    <!--- name and remove buttons --->
+    <isinclude template="account/subscription/subscriptionProductCardHeader" />
+
+    <div class="row ${bonuslineitemrow}">
+        <div class="${pdict.subscriptionType == 'upcomingdeliveries' ? " col-lg-4" : "col-lg-5"}">
+            <div class="row">
+                <div class="col-lg-12 d-flex flex-row">
+                    <div class="item-image">
+                        <a href="${URLUtils.url('Product-Show', 'pid', lineItem.id)}">
+                            <img class="product-image" src="${lineItem.images.small[0].url}"
+                                alt="${lineItem.images.small[0].alt}" title="${lineItem.images.small[0].title}"
+                                onerror="this.src='${URLUtils.staticURL('/images/img-na.png')}'">
+                        </a>
+
+                    </div>
+                    <div class="item-attributes d-flex flex-column">
+                        <isloop items="${lineItem.variationAttributes}" var="attribute">
+                            <p class="line-item-attributes ${attribute.displayName}-${lineItem.UUID}">
+                                ${attribute.displayName}: ${attribute.displayValue}</p>
+                        </isloop>
+                        <isloop items="${lineItem.options}" var="option">
+                            <isif condition="${!!option}">
+                                <div class="lineItem-options-values" data-option-id="${option.optionId}"
+                                    data-value-id="${option.selectedValueId}">
+                                    <p class="line-item-attributes">${option.displayName}</p>
+                                </div>
+                            </isif>
+                        </isloop>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <isinclude template="account/subscription/subscriptionProductCardProductPrice" />
+        <div class="${pdict.subscriptionType == 'upcomingdeliveries' ? " col-lg-2" : "col-lg-3"} mt-2">
+            <isinclude template="account/subscription/subscriptionInterval" />
+            <isset name="currentDate" value="${new Date()}" scope="page" />
+            <isset name="subscriptionOrderDate"
+                value="${new Date(pdict.subscriptionDetails[status.index].nextOrderDateDisplay)}" scope="page" />
+            <isif condition="${pdict.subscriptionType != 'cancel' && pdict.subscriptionType != 'upcomingdeliveries' && currentDate.setHours(0, 0, 0, 0) > subscriptionOrderDate.setHours(0,
+                             0, 0, 0) && subscriptionEnabled}">
+                <p class="mt-1">
+                    ${Resource.msg('text.order.status.pending', 'subscription', null)}
+                    <span class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top"
+                        title="${Resource.msg('text.info.order.status.pending', 'subscription', null)}"></span>
+                </p>
+            </isif>
+        </div>
+        <isif condition="${pdict.subscriptionType == 'upcomingdeliveries'}">
+            <div class="col-lg-3 preferred-order-date-container mt-2">
+                <div class="mb-2">
+                    <isset name="currentDate" value="${new Date()}" scope="page" />
+                    <isset name="subscriptionOrderDate"
+                        value="${new Date(pdict.subscriptionDetails[status.index].nextOrderDateDisplay)}"
+                        scope="page" />
+                    <label for="nextOrderDate">${Resource.msg('button.update.subscription.nextOrderDate', 'subscription', null)}</label>
+                    <input type="date" name="nextOrderDate" id="preferredOrderDate"
+                        value="${pdict.subscriptionDetails[status.index].nextOrderDateDisplay}"
+                        min="${pdict.subscriptionDetails[status.index].currentDateDisplay}"
+                        max="${pdict.subscriptionDetails[status.index].nextNextOrderDateDisplay}" <isprint
+                        value="${subscriptionEnabled ? "" : " disabled"}" />/>
+                    <isif condition="${subscriptionEnabled && currentDate.setHours(0, 0, 0, 0) > subscriptionOrderDate.setHours(0, 0, 0, 0)}">
+                        <p class="mt-1">
+                            ${Resource.msg('text.order.status.pending', 'subscription', null)}
+                            <span class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip"
+                                data-placement="top"
+                                title="${Resource.msg('text.info.order.status.pending', 'subscription', null)}"></span>
+                        </p>
+                    </isif>
+                </div>
+            </div>
+        </isif>
+    </div>
+    <isif condition="${!subscriptionEnabled}">
+        <div class="row justify-content-end mt-3">
+            ${Resource.msg('text.subscription.status.discontinued', 'subscription', null)}
+        </div>
+    </isif>
+
+        <isif condition="${pdict.subscriptionType == 'upcomingdeliveries' && subscriptionEnabled}">
+            <div class="row justify-content-end future-orders-group mt-4">
+                <input type="checkbox" id="subscribeProduct" name="subscribeProduct" class="mb-2" />
+                <label for="subscribeProduct" class="text-center mx-3">${Resource.msg('occurence.or.series.update.text', 'subscription', null)}</label>
+            </div>
+        </isif>
+        <div class="row subscription-btns-wrapper justify-content-end mt-3">
+            <isif condition="${pdict.subscriptionType == 'active'}">
+                <isif condition="${subscriptionEnabled && currentDate.setHours(0, 0, 0, 0) <= subscriptionOrderDate.setHours(0,
+                             0, 0, 0)}">
+                <a href="" class="need-this-sooner mt-2" data-pid="${lineItem.id}"  data-action="${pdict.actionUrls.quickOrderUrl}">${Resource.msg('text.quick.checkout','subscription',null)}</a>
+                </isif>
+                <button type="submit"
+                    class="update-subscription-btn subscription-btn btn btn-primary btn-block col-xl-1 col-lg-2 col-md-3 col-sm-3"
+                    id="subscription-update" data-sid="${subscriptionDetails[status.index].sid}"
+                    data-uuid="${lineItem.uuid}" data-action="${pdict.actionUrls.updateSubscriptionDetails}"
+                    data-quantity="${subscriptionDetails[status.index].quantity}"
+                    data-orderinterval="${subscriptionDetails[status.index].orderInterval}"
+                    aria-label="${Resource.msgf('text.update.line.item', 'subscription', null, lineItem.productName)}"
+                    <isprint value="${subscriptionEnabled ? "" : " disabled"}" />>
+                <span aria-hidden="true">${Resource.msg('button.update.subscription', 'subscription', null)}</span>
+                </button>
+                <button type="button"
+                    class="cancel-subscription-btn remove-product subscription-btn btn btn-outline-primary col-xl-1 col-lg-2 col-md-3 col-sm-3"
+                    id="subscription-cancel" data-toggle="modal" data-target=".cart-page #removeProductModal"
+                    data-pid="${lineItem.id}" data-sid="${pdict.subscriptionDetails[status.index].sid}"
+                    data-name="${lineItem.productName}" data-action="${pdict.actionUrls.cancelSubscriptionUrl}"
+                    data-uuid="${lineItem.uuid}"
+                    aria-label="${Resource.msgf('text.remove.line.item', 'cart', null, lineItem.productName)}">
+                    <span aria-hidden="true">${Resource.msg('button.cancel.subscription', 'subscription', null)}</span>
+                </button>
+            </isif>
+
+            <isif condition="${pdict.subscriptionType == 'cancel'}">
+                <button type="submit"
+                    class="reactivate-subscription-btn subscription-btn btn btn-primary btn-block col-xl-2 col-lg-2 col-md-3 col-sm-3"
+                    id="subscription-reactivate" data-sid="${subscriptionDetails[status.index].sid}"
+                    data-uuid="${lineItem.uuid}" data-action="${pdict.actionUrls.reactivateSubscriptionUrl}"
+                    data-quantity="${subscriptionDetails[status.index].quantity}"
+                    data-orderinterval="${subscriptionDetails[status.index].orderInterval}"
+                    aria-label="${Resource.msgf('text.reactivate.line.item', 'subscription', null, lineItem.productName)}"
+                    <isprint value="${subscriptionEnabled ? "" : " disabled"}" />>
+                <span aria-hidden="true">${Resource.msg('button.reactivate.subscription', 'subscription', null)}</span>
+                </button>
+            </isif>
+            <isif condition="${pdict.subscriptionType == 'upcomingdeliveries'}">
+                <button type="submit"
+                    class="save-nextorderdate-subscription-btn update-product subscription-btn btn btn-primary btn-block col-xl-1 col-lg-2 col-md-3 col-sm-3"
+                    id="subscription-save-nextorderdate" data-toggle="modal" data-target="#saveProductDateModal"
+                    data-sid="${subscriptionDetails[status.index].sid}" data-uuid="${lineItem.uuid}"
+                    data-action="${pdict.actionUrls.saveNextOrderDateUrl}" data-name="${lineItem.productName}"
+                    aria-label="${Resource.msgf('text.update.line.item', 'subscription', null, lineItem.productName)}"
+                    <isprint value="${subscriptionEnabled ? "" : " disabled"}" />>
+                <span aria-hidden="true">${Resource.msg('button.update.subscription', 'subscription', null)}</span>
+                </button>
+            </isif>
+
+        </div>
+</div>

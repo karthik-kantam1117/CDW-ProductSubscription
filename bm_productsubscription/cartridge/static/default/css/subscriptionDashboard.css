@@ -1,0 +1,12 @@
+.add-to-cart-messages {
+    width: 35%;
+    margin : 0 auto;
+}
+.closeX {
+    position: absolute;
+    right: 0px;
+    top: 3px;
+}
+.closeX span{
+    pointer-events: none;
+}

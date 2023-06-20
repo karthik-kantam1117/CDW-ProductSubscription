@@ -1,0 +1,27 @@
+<div class="modal fade" id="saveProductDateModal" tabindex="-1" role="dialog"
+    aria-labelledby="SaveDateLineItemModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content save-date-subscription-modal">
+            <div class="modal-header save-date-confirmation-header">
+                <h2 class="modal-title" id="saveDateProductLineItemModal">
+                    ${Resource.msg('heading.update.subscription.confirmation.modal', 'subscription', null)}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body save-date-confirmation-body">
+                ${Resource.msg('msg.save.date.subscription.confirmation.modal', 'subscription', null)}
+                <p class="product-to-update font-weight-bold"></p>
+                <div class="save-date-note py-2">
+                    ${Resource.msg('note.save.date.subscription.confirmation.modal', 'subscription', null)}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary"
+                    data-dismiss="modal">${Resource.msg('button.cancel', 'cart', null)}</button>
+                <button type="button" class="btn btn-primary subscription-save-date-confirmation-btn" data-dismiss="modal">
+                    ${Resource.msg('button.confirm', 'cart', null)}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

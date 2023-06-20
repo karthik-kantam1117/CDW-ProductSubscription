@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+    <type-extension type-id="Product">
+        <custom-attribute-definitions> 
+            <attribute-definition attribute-id="subscriptionAllowedInterval">
+                <display-name xml:lang="x-default">Subscription Allowed Interval</display-name>
+                <type>string</type>
+                <localizable-flag>false</localizable-flag>
+                <site-specific-flag>false</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <visible-flag>false</visible-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <order-required-flag>false</order-required-flag>
+                <externally-defined-flag>false</externally-defined-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="subscriptionEnabled">
+                <display-name xml:lang="x-default">Subscribe And Save</display-name>
+                <description xml:lang="x-default">Subscribe And Save</description>
+                <type>boolean</type>
+                <site-specific-flag>false</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <visible-flag>false</visible-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <order-required-flag>false</order-required-flag>
+                <externally-defined-flag>false</externally-defined-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="subscriptionType">
+                <display-name xml:lang="x-default">Subscription Type</display-name>
+                <description xml:lang="x-default">Type of Subscription – Percentage OFF, Amount OFF</description>
+                <type>enum-of-string</type>
+                <localizable-flag>false</localizable-flag>
+                <site-specific-flag>false</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <visible-flag>false</visible-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <order-required-flag>false</order-required-flag>
+                <externally-defined-flag>false</externally-defined-flag>
+                <value-definitions>
+                    <value-definition>
+                        <display xml:lang="x-default">Percentage OFF</display>
+                        <value>PERCENT_OFF</value>
+                    </value-definition>
+                    <value-definition>
+                        <display xml:lang="x-default">Amount OFF</display>
+                        <value>AMOUNT_OFF</value>
+                    </value-definition>
+                </value-definitions>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="productSubscription">
+                <display-name xml:lang="x-default">Product Subscription</display-name>
+                <attribute attribute-id="subscriptionType"/>
+                <attribute attribute-id="subscriptionEnabled"/>
+                <attribute attribute-id="subscriptionAllowedInterval"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+    <type-extension type-id="ProductLineItem">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="subscribed">
+                <display-name xml:lang="x-default">Subscribed</display-name>
+                <description xml:lang="x-default">Flag to check if the product is subscribed.</description>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="subscriptionInterval">
+                <display-name xml:lang="x-default">Subscription Interval</display-name>
+                <type>int</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="subscriptionItem">
+                <display-name xml:lang="x-default">SubscriptionItem</display-name>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="subscriptionDetails">
+                <display-name xml:lang="x-default">Subscription Details</display-name>
+                <attribute attribute-id="subscriptionItem"/>
+                <attribute attribute-id="subscriptionInterval"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+    <type-extension type-id="Profile">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="defaultCreditCardUUID">
+                <display-name xml:lang="x-default">Default Credit Card UUID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="ProductSubscription">
+                <display-name xml:lang="x-default">Product Subscription Customer Preferences</display-name>
+                <attribute attribute-id="defaultCreditCardUUID"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+    <type-extension type-id="SitePreferences">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="subscriptionPriceBookName">
+                <display-name xml:lang="x-default">Subscription Price Book Name</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="ProductSubscription">
+                <display-name xml:lang="x-default">Product Subscription Custom Preferences</display-name>
+                <attribute attribute-id="subscriptionPriceBookName"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+</metadata>

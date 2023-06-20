@@ -1,0 +1,23 @@
+@import "~base/productCard";
+
+.line-item-subscribed {
+    font-size: 0.813em;
+    color: #e7131a;
+    margin-top: 1rem;
+    text-align: right;
+
+    .product-subscription-discount{
+        border-radius: 1.25rem 0;
+    }
+    .product-subscribed {
+        &:before {
+            content: '\f274';
+            font-family: 'Font Awesome\ 5 Free';
+            font-weight: 900;
+            padding-right: 0.375rem;
+        }
+    }
+}
+#checkout-main .line-item-subscribed, .receipt .line-item-subscribed{
+    text-align: left;
+}

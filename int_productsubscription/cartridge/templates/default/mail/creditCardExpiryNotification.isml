@@ -1,0 +1,13 @@
+<body>
+
+    <h1>${Resource.msg('email.msg.greeting.hi', 'subscription', null)}&nbsp;${pdict.customer.firstName}<isif condition="${pdict.customer.lastName}">&nbsp;${pdict.customer.lastName},</isif></h1>
+
+    <p>${Resource.msg('email.msg.creditcard.expired.body1','subscription',null)} <a href="${pdict.url}">${Resource.msg('email.hyperlink.text.creditcard.expired','subscription',null)}</a>.</p>
+
+
+    <p>${Resource.msg('email.msg.creditcard.expired.body2','subscription',null)}</p>
+
+</body>
+
+ 
+   
